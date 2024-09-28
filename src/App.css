@@ -1,38 +1,77 @@
-.App {
-  text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@use postcss-nested;
+
+body {
+  font-family: "Roboto", sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+button {
+  &:hover {
+    transform: scale(1.01);
+  }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  &:focus {
+    outline: none !important;
+  }
+
+  &:active {
+    transform: scale(0.99);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.check-svg {
+  animation: svgScale 0.5s ease-in-out;
+}
+.download-arrow {
+  transition: transform 0.2s linear;
+}
+button:hover .download-arrow {
+  transform: translate(0, 3px);
 }
 
-.App-link {
-  color: #61dafb;
+@keyframes svgScale {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
 }
 
-@keyframes App-logo-spin {
+button.download-button {
+  min-width: 340px;
+  min-height: 68px;
+}
+.download-loader {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  opacity: 0;
+  animation: button-loading-spinner 1s ease 3;
+}
+@keyframes button-loading-spinner {
   from {
-    transform: rotate(0deg);
+    transform: rotate(0turn);
+    opacity: 1;
   }
+
   to {
-    transform: rotate(360deg);
+    transform: rotate(1turn);
+    opacity: 0;
+  }
+}
+.button-copy {
+  padding-top: 2px;
+}
+@media (max-width: 375px) {
+  button.copy-button {
+    min-width: 300px;
   }
 }
